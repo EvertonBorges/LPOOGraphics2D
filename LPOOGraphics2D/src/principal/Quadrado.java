@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package principal;
 
 import java.awt.Graphics;
 
-/**
- *
- * @author Borges
- */
 public class Quadrado extends Quadrilatero{
     private double area;
     private double diagonal;
@@ -111,13 +102,4 @@ public class Quadrado extends Quadrilatero{
             g.fillRect(0, 0, (int) getBase(), (int) getAltura());
         }
     }
-    /*
-    public Graphics desenhaGraphics(Graphics g){
-        if (vazado) {
-            g.drawRect(0, 0, (int) getBase(), (int) getAltura());
-        } else {
-            g.fillRect(0, 0, (int) getBase(), (int) getAltura());
-        }
-        return g;
-    }*/
 }

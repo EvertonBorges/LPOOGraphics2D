@@ -5,33 +5,34 @@
  */
 package principal;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
  *
- * @author Borges
+ * @author Everton Soares
  */
-public class Quadrado extends Quadrilatero{
+public class Retangulo extends Quadrilatero{
     private double area;
     private double diagonal;
     private int posX;
     private int posY;
     private boolean vazado;
 
-    public Quadrado() {
+    public Retangulo() {
         
     }
 
-    public Quadrado(double lado) {
-        super(lado, lado);
+    public Retangulo(double base, double altura) {
+        super(base, altura);
     }
 
-    public Quadrado(double lado, int posX, int posY, boolean vazado) {
-        super(lado, lado);
+    public Retangulo(double base, double altura, int posX, int posY, boolean vazado) {
+        super(base, altura);
         this.posX = posX;
         this.posY = posY;
         this.vazado = vazado;
-        setSize((int) lado + 1, (int) lado + 1);
+        setSize((int) base + 1, (int) altura + 1);
         setLocation(posX, posY);
         setLayout(null);
     }
@@ -55,6 +56,17 @@ public class Quadrado extends Quadrilatero{
     public void setVazado(boolean vazado) {
         this.vazado = vazado;
     }
+    
+    public void setPosicao(int posX, int posY){
+        this.posX = posX;
+        this.posY = posY;
+    }
+    
+    public void setPosicao(int posX, int posY, boolean vazado){
+        this.posX = posX;
+        this.posY = posY;
+        this.vazado = vazado;
+    }
 
     public double getArea() {
         return area;
@@ -74,19 +86,6 @@ public class Quadrado extends Quadrilatero{
 
     public boolean isVazado() {
         return vazado;
-    }
-    
-    public void setPosicao(int posX, int posY){
-        this.posX = posX;
-        this.posY = posY;
-        setLocation(posX, posY);
-    }
-    
-    public void setPosicao(int posX, int posY, boolean vazado){
-        this.posX = posX;
-        this.posY = posY;
-        this.vazado = vazado;
-        setLocation(posX, posY);
     }
     
     public double calcArea(double lado){
@@ -112,13 +111,4 @@ public class Quadrado extends Quadrilatero{
             g.fillRect(0, 0, (int) getBase(), (int) getAltura());
         }
     }
-    /*
-    public Graphics desenhaGraphics(Graphics g){
-        if (vazado) {
-            g.drawRect(0, 0, (int) getBase(), (int) getAltura());
-        } else {
-            g.fillRect(0, 0, (int) getBase(), (int) getAltura());
-        }
-        return g;
-    }*/
 }

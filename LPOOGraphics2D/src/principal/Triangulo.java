@@ -9,29 +9,29 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Borges
+ * @author Everton Soares
  */
-public class Quadrado extends Quadrilatero{
+public class Triangulo extends Quadrilatero{
     private double area;
     private double diagonal;
     private int posX;
     private int posY;
     private boolean vazado;
 
-    public Quadrado() {
+    public Triangulo() {
         
     }
 
-    public Quadrado(double lado) {
-        super(lado, lado);
+    public Triangulo(double base, double altura) {
+        super(base, altura);
     }
 
-    public Quadrado(double lado, int posX, int posY, boolean vazado) {
-        super(lado, lado);
+    public Triangulo(double base, double altura, int posX, int posY, boolean vazado) {
+        super(base, altura);
         this.posX = posX;
         this.posY = posY;
         this.vazado = vazado;
-        setSize((int) lado + 1, (int) lado + 1);
+        setSize((int) base, (int) altura);
         setLocation(posX, posY);
         setLayout(null);
     }
@@ -106,19 +106,13 @@ public class Quadrado extends Quadrilatero{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (vazado) {
-            g.drawRect(0, 0, (int) getBase(), (int) getAltura());
-        } else {
-            g.fillRect(0, 0, (int) getBase(), (int) getAltura());
-        }
+        g.drawLine(posX, posY, posX + (int) getBase(), posY);
+        g.drawLine(posX, posY, posX, posY - (int) getAltura());
+        g.drawLine(posX, posY - (int) getAltura(), (int) getBase() + posX, posY);
+        
+        
+        g.drawLine(posX, posY, (int) (posX - getBase()), posY);
+        g.drawLine(posX, posY, posX, (int) (posY - getAltura()));
+        g.drawLine(posX, posY - (int) getAltura(), (int) (posX - getBase()), posY);
     }
-    /*
-    public Graphics desenhaGraphics(Graphics g){
-        if (vazado) {
-            g.drawRect(0, 0, (int) getBase(), (int) getAltura());
-        } else {
-            g.fillRect(0, 0, (int) getBase(), (int) getAltura());
-        }
-        return g;
-    }*/
 }

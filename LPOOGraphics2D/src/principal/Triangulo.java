@@ -6,6 +6,7 @@
 package principal;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Triangulo extends Quadrilatero{
     private int posX;
     private int posY;
     private boolean vazado;
+    private boolean principal;
 
     public Triangulo() {
         
@@ -26,13 +28,18 @@ public class Triangulo extends Quadrilatero{
         super(base, altura);
     }
 
-    public Triangulo(double base, double altura, int posX, int posY, boolean vazado) {
+    public Triangulo(int posX, int posY, double base, double altura, boolean vazado, boolean principal) {
         super(base, altura);
         this.posX = posX;
         this.posY = posY;
         this.vazado = vazado;
-        setSize((int) base, (int) altura);
-        setLocation(posX, posY);
+        this.principal = principal;
+        setSize((int) base, (int) altura + 1);
+        if (principal){
+            setLocation(posX, posY);
+        } else {
+            setLocation(posX, posY);
+        }
         setLayout(null);
     }
 
@@ -56,6 +63,10 @@ public class Triangulo extends Quadrilatero{
         this.vazado = vazado;
     }
 
+    public void setPrincipal(boolean principal) {
+        this.principal = principal;
+    }
+
     public double getArea() {
         return area;
     }
@@ -74,6 +85,10 @@ public class Triangulo extends Quadrilatero{
 
     public boolean isVazado() {
         return vazado;
+    }
+
+    public boolean isPrincipal() {
+        return principal;
     }
     
     public void setPosicao(int posX, int posY){
@@ -106,13 +121,21 @@ public class Triangulo extends Quadrilatero{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawLine(posX, posY, posX + (int) getBase(), posY);
-        g.drawLine(posX, posY, posX, posY - (int) getAltura());
-        g.drawLine(posX, posY - (int) getAltura(), (int) getBase() + posX, posY);
+        Polygon poligono = new Polygon();
+        if (principal){
+            poligono.addPoint(0, 0);
+            poligono.addPoint(0, (int) getAltura());
+            poligono.addPoint((int) getBase(), (int) getAltura());
+        } else {
+            poligono.addPoint(0, (int) getAltura());
+            poligono.addPoint((int) getBase(), (int) getAltura());
+            poligono.addPoint((int) getBase(), 0);
+        }
         
-        
-        g.drawLine(posX, posY, (int) (posX - getBase()), posY);
-        g.drawLine(posX, posY, posX, (int) (posY - getAltura()));
-        g.drawLine(posX, posY - (int) getAltura(), (int) (posX - getBase()), posY);
+        if (vazado) {
+            g.drawPolygon(poligono);
+        } else {
+            g.fillPolygon(poligono);
+        }
     }
 }

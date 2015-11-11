@@ -26,14 +26,13 @@ public class Quadrado extends Quadrilatero{
         super(lado, lado);
     }
 
-    public Quadrado(double lado, int posX, int posY, boolean vazado) {
+    public Quadrado(int posX, int posY, double lado, boolean vazado) {
         super(lado, lado);
+        setLayout(null);
         this.posX = posX;
         this.posY = posY;
         this.vazado = vazado;
-        setSize((int) lado + 1, (int) lado + 1);
         setLocation(posX, posY);
-        setLayout(null);
     }
 
     public void setArea(double area) {

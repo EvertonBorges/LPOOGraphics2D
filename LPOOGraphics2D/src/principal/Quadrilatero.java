@@ -5,20 +5,24 @@
  */
 package principal;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Borges
  */
-public class Quadrilatero extends PainelDesenho {
+public class Quadrilatero extends JPanel {
     private double base;
     private double altura;
     
     public Quadrilatero() {
+        
     }
 
     public Quadrilatero(double base, double altura) {
         this.base = base;
         this.altura = altura;
+        setSize((int) base + 1, (int) altura + 1);
     }
 
     public void setBase(double base) {

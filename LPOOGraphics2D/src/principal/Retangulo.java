@@ -5,7 +5,6 @@
  */
 package principal;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -27,12 +26,11 @@ public class Retangulo extends Quadrilatero{
         super(base, altura);
     }
 
-    public Retangulo(double base, double altura, int posX, int posY, boolean vazado) {
+    public Retangulo(int posX, int posY, double base, double altura, boolean vazado) {
         super(base, altura);
         this.posX = posX;
         this.posY = posY;
         this.vazado = vazado;
-        setSize((int) base + 1, (int) altura + 1);
         setLocation(posX, posY);
         setLayout(null);
     }
